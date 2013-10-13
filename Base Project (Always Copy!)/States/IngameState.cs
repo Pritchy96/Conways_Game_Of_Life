@@ -25,7 +25,7 @@ class IngameState : BasicState
     {
         //Setting Size of Arrays.
         currentState = new bool[(int)Math.Floor((Double)(dimensions.Width - dimensions.X) / tileWidth),
-            (int)Math.Floor((Double)(dimensions.Width - dimensions.X) / tileWidth)];
+            (int)Math.Floor((Double)(dimensions.Height - dimensions.Y) / tileWidth)];
         nextState = new bool[currentState.GetLength(0), currentState.GetLength(1)];
         clicked = new bool[currentState.GetLength(0), currentState.GetLength(1)];
     }
@@ -191,5 +191,41 @@ class IngameState : BasicState
                 clicked[xPos, yPos] = !clicked[xPos, yPos];
             }
         }
+    }
+
+    public override void ResizeWindow(EventArgs e, int width, int height)
+        {
+
+        //Currently not working, this is an attempt to resize the tile array and keep the elements currently within it.
+        //Resizing Dimensions.
+        dimensions = new Rectangle(0, 0, width, height);
+
+        bool[,] tempCurrent = new bool[currentState.GetLength(0), currentState.GetLength(1)];
+
+        //Setting Size of Arrays.
+        currentState = new bool[(int)Math.Floor((Double)(dimensions.Height - dimensions.Y) / tileWidth),
+            (int)Math.Floor((Double)(dimensions.Width - dimensions.X) / tileWidth)];
+
+        //Updating the Current array with the Next arrays values.
+        for (int i = 0; i < nextState.GetLength(0); i++)
+        {
+            for (int j = 0; j < nextState.GetLength(1); j++)
+            {
+                currentState[i, j] = nextState[i, j];
+            }
+        }
+
+        nextState = new bool[currentState.GetLength(0), currentState.GetLength(1)];
+
+        //Updating the Current array with the Next arrays values.
+        for (int i = 0; i < currentState.GetLength(0); i++)
+        {
+            for (int j = 0; j < currentState.GetLength(1); j++)
+            {
+                nextState[i, j] = currentState[i, j];
+            }
+        }
+
+        clicked = new bool[currentState.GetLength(0), currentState.GetLength(1)];
     }
 }

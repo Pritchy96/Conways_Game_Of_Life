@@ -28,4 +28,8 @@ using System.Windows.Forms;
         {
         }
 
+        public virtual void ResizeWindow(EventArgs e, int width, int height)
+        {
+        }
+
     }

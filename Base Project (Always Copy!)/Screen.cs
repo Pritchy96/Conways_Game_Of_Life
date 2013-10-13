@@ -13,9 +13,6 @@ namespace Base_Project__Always_Copy__
 {
     public partial class Screen : Form
     {
-        //Screen size.
-        public static int WIDTH = 810;
-        public static int HEIGHT = 810;
 
         //Thread Variables.
         Boolean Running = false;
@@ -29,7 +26,6 @@ namespace Base_Project__Always_Copy__
         public Screen()
         {
             InitializeComponent();
-            SetScreenSize(WIDTH, HEIGHT);
             BeginThread();
         }
 
@@ -115,6 +111,11 @@ namespace Base_Project__Always_Copy__
         private void MouseDown(object sender, MouseEventArgs e)
         {
             manager.MouseDown(e);
+        }
+
+        public void ResizeWindow(object sender, EventArgs e)
+        {
+            manager.ResizeWindow(e, this.Height, this.Width);
         }
     }
 }

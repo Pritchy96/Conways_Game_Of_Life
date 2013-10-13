@@ -35,6 +35,11 @@ using System.Windows.Forms;
             currentState.MouseDown(e);
         }
 
+        public void ResizeWindow(EventArgs e, int width, int height)
+        {
+            currentState.ResizeWindow(e, width, height);
+        }
+
         public void Update()
         {
             currentState.Update();
@@ -44,6 +49,8 @@ using System.Windows.Forms;
         {
             currentState.Redraw(e);
         }
+
+
 
     }
 
