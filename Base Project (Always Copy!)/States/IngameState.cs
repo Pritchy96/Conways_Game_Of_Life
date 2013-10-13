@@ -174,5 +174,22 @@ class IngameState : BasicState
     public override void MouseDown(MouseEventArgs e)
     {
         mousedown = true;
+
+        if (e.Button == MouseButtons.Left && dimensions.Contains(e.Location))
+        {
+            //Calculating the tile which the mouse is over.
+            int xPos = e.X / tileWidth;
+            int yPos = e.Y / tileWidth;
+
+            //If this tile hasn't been changed in this current click, change it.
+            if (clicked[xPos, yPos] != true)
+            {
+                //Changing the bools of each array to the opposite of what
+                //they were.
+                currentState[xPos, yPos] = !currentState[xPos, yPos];
+                nextState[xPos, yPos] = !nextState[xPos, yPos];
+                clicked[xPos, yPos] = !clicked[xPos, yPos];
+            }
+        }
     }
 }
