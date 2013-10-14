@@ -39,6 +39,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
+            this.lblPaused = new System.Windows.Forms.Label();
             this.DrawScreen = new Base_Project__Always_Copy__.DBPanel();
             this.ControlPanel.SuspendLayout();
             this.LoadStrip.SuspendLayout();
@@ -47,6 +48,7 @@
             // ControlPanel
             // 
             this.ControlPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ControlPanel.Controls.Add(this.lblPaused);
             this.ControlPanel.Controls.Add(this.LoadStrip);
             this.ControlPanel.Controls.Add(this.btnSave);
             this.ControlPanel.Controls.Add(this.btnClear);
@@ -68,10 +70,9 @@
             this.yourSavesToolStripMenuItem});
             this.LoadStrip.Location = new System.Drawing.Point(7, 16);
             this.LoadStrip.Name = "LoadStrip";
-            this.LoadStrip.Size = new System.Drawing.Size(433, 24);
+            this.LoadStrip.Size = new System.Drawing.Size(341, 24);
             this.LoadStrip.TabIndex = 4;
             this.LoadStrip.Text = "menuStrip1";
-            this.LoadStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LoadStripClick);
             // 
             // StillLifeforms
             // 
@@ -86,14 +87,16 @@
             // Block
             // 
             this.Block.Name = "Block";
-            this.Block.Size = new System.Drawing.Size(152, 22);
+            this.Block.Size = new System.Drawing.Size(116, 22);
             this.Block.Text = "Block";
+            this.Block.Click += new System.EventHandler(this.Block_Click);
             // 
             // Beehive
             // 
             this.Beehive.Name = "Beehive";
-            this.Beehive.Size = new System.Drawing.Size(152, 22);
+            this.Beehive.Size = new System.Drawing.Size(116, 22);
             this.Beehive.Text = "Beehive";
+            this.Beehive.Click += new System.EventHandler(this.Beehive_Click);
             // 
             // oscillatorsToolStripMenuItem
             // 
@@ -117,11 +120,11 @@
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(533, 16);
+            this.btnSave.Location = new System.Drawing.Point(533, 62);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 40);
             this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save Shape";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnClear
@@ -134,18 +137,29 @@
             this.btnClear.TabIndex = 0;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnPause
             // 
             this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPause.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPause.Location = new System.Drawing.Point(662, 16);
+            this.btnPause.Location = new System.Drawing.Point(533, 16);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(123, 40);
             this.btnPause.TabIndex = 1;
-            this.btnPause.Text = "Pause";
+            this.btnPause.Text = "Pause/Unpause";
             this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // lblPaused
+            // 
+            this.lblPaused.AutoSize = true;
+            this.lblPaused.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaused.Location = new System.Drawing.Point(690, 23);
+            this.lblPaused.Name = "lblPaused";
+            this.lblPaused.Size = new System.Drawing.Size(66, 23);
+            this.lblPaused.TabIndex = 5;
+            this.lblPaused.Text = "Paused";
             // 
             // DrawScreen
             // 
@@ -194,8 +208,9 @@
         private System.Windows.Forms.ToolStripMenuItem Block;
         private System.Windows.Forms.ToolStripMenuItem Beehive;
         private System.Windows.Forms.ToolStripMenuItem oscillatorsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem spaceShipsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yourSavesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spaceShipsToolStripMenuItem;
+        private System.Windows.Forms.Label lblPaused;
 
     }
 }

@@ -110,22 +110,24 @@ namespace Base_Project__Always_Copy__
             manager.ResizeWindow(e, this.DrawScreen.Height, this.DrawScreen.Width);
         }
 
-        private void blockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoadStripClick(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Name == "SpaceShips")
-            {
-               e.ClickedItem.c
-            }
-        }
-
         private void Block_Click(object sender, EventArgs e)
         {
+            manager.CurrentState.LoadShapeClick("Block");
+        }
 
+        private void Beehive_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Beehive");
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.ClearGrid();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.Pause(lblPaused);
         }
     }
 }

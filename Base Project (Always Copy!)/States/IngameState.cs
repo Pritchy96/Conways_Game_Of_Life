@@ -30,6 +30,32 @@ class IngameState : BasicState
         clicked = new bool[currentState.GetLength(0), currentState.GetLength(1)];
     }
 
+    public override void ClearGrid()
+    {
+        for (int i = 0; i < currentState.GetLength(0); i++)
+        {
+            for (int j = 0; j < currentState.GetLength(1); j++)
+            {
+                currentState[i, j] = false;
+                nextState[i, j] = false;
+            }
+        }
+    }
+
+    public override void Pause(Label lblPause)
+    {
+        if (paused == true)
+        {
+            paused = false;
+            lblPause.Text = "Active";
+        }
+        else
+        {
+            paused = true;
+            lblPause.Text = "Paused";
+        }
+    }
+
     public override void Update()
     {
         if (paused == false)
@@ -162,14 +188,6 @@ class IngameState : BasicState
 
     public override void MouseClicked(MouseEventArgs e)
     {
-        if (e.Button == MouseButtons.Left)
-        {
-        }
-        else if (e.Button == MouseButtons.Right)
-        {
-            paused = !paused;
-        }
-
         //A full click has been recorded, mouse is no longer down.
         //Clicked can also be cleared as a new one is needed for next mousedown.
         mousedown = false;
@@ -201,5 +219,37 @@ class IngameState : BasicState
     public override void ResizeWindow(EventArgs e, int width, int height)
     {
 
+    }
+
+    public override void LoadShapeClick(String shapeName)
+    {
+        //Clears grid ready for shape load.
+        ClearGrid();
+
+        //Massive, horrible switch statement to see which button was clicked
+        //and loading/drawing the respective shape.
+        switch (shapeName)
+        {
+            case ("Block"):
+                //Drawing code here
+                currentState[10, 10] = true;
+                currentState[10, 11] = true;
+                currentState[11, 10] = true;
+                currentState[11, 11] = true;
+
+                nextState[10, 10] = true;
+                nextState[10, 11] = true;
+                nextState[11, 10] = true;
+                nextState[11, 11] = true;
+                break;
+
+            case ("Beehive"):
+                //and here.
+                break;
+
+        }
+
+        //Pasuing so the player can see the shape.
+        paused = true;
     }
 }

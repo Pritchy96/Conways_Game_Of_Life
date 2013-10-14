@@ -32,4 +32,18 @@ using System.Windows.Forms;
         {
         }
 
+        public virtual void LoadShapeClick(String shapeName)
+        {
+        }
+
+        public virtual void ClearGrid()
+        {
+        }
+
+        public virtual void Pause(Label lblPause)
+        {
+        }
+        
+        
+
     }
