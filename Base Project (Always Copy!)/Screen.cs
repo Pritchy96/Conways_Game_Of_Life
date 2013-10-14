@@ -19,6 +19,7 @@ namespace Base_Project__Always_Copy__
         Thread thread = null;
 
         Manager manager = new Manager();
+        string hello;
 
         #region Function Explanation
         //Constructor, sets Screen size and then begins Thread.
@@ -107,6 +108,24 @@ namespace Base_Project__Always_Copy__
         public void ResizeWindow(object sender, EventArgs e)
         {
             manager.ResizeWindow(e, this.DrawScreen.Height, this.DrawScreen.Width);
+        }
+
+        private void blockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadStripClick(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Name == "SpaceShips")
+            {
+               e.ClickedItem.c
+            }
+        }
+
+        private void Block_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.ControlPanel = new System.Windows.Forms.Panel();
-            this.btnPause = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.LoadStrip = new System.Windows.Forms.MenuStrip();
-            this.wtfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beehiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StillLifeforms = new System.Windows.Forms.ToolStripMenuItem();
+            this.Block = new System.Windows.Forms.ToolStripMenuItem();
+            this.Beehive = new System.Windows.Forms.ToolStripMenuItem();
             this.oscillatorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spaceShipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yourSavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
             this.DrawScreen = new Base_Project__Always_Copy__.DBPanel();
             this.ControlPanel.SuspendLayout();
             this.LoadStrip.SuspendLayout();
@@ -56,77 +56,44 @@
             this.ControlPanel.Size = new System.Drawing.Size(799, 122);
             this.ControlPanel.TabIndex = 2;
             // 
-            // btnPause
-            // 
-            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPause.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPause.Location = new System.Drawing.Point(662, 16);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(123, 40);
-            this.btnPause.TabIndex = 1;
-            this.btnPause.Text = "Pause";
-            this.btnPause.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClear.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(662, 62);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(123, 40);
-            this.btnClear.TabIndex = 0;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(533, 16);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 40);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // LoadStrip
             // 
             this.LoadStrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LoadStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.LoadStrip.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoadStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wtfToolStripMenuItem,
+            this.StillLifeforms,
             this.oscillatorsToolStripMenuItem,
             this.spaceShipsToolStripMenuItem,
             this.yourSavesToolStripMenuItem});
             this.LoadStrip.Location = new System.Drawing.Point(7, 16);
             this.LoadStrip.Name = "LoadStrip";
-            this.LoadStrip.Size = new System.Drawing.Size(341, 24);
+            this.LoadStrip.Size = new System.Drawing.Size(433, 24);
             this.LoadStrip.TabIndex = 4;
             this.LoadStrip.Text = "menuStrip1";
+            this.LoadStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LoadStripClick);
             // 
-            // wtfToolStripMenuItem
+            // StillLifeforms
             // 
-            this.wtfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blockToolStripMenuItem,
-            this.beehiveToolStripMenuItem});
-            this.wtfToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.wtfToolStripMenuItem.Name = "wtfToolStripMenuItem";
-            this.wtfToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.wtfToolStripMenuItem.Text = "Still Lifeforms";
+            this.StillLifeforms.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Block,
+            this.Beehive});
+            this.StillLifeforms.Font = new System.Drawing.Font("Calibri", 9.75F);
+            this.StillLifeforms.Name = "StillLifeforms";
+            this.StillLifeforms.Size = new System.Drawing.Size(94, 20);
+            this.StillLifeforms.Text = "Still Lifeforms";
             // 
-            // blockToolStripMenuItem
+            // Block
             // 
-            this.blockToolStripMenuItem.Name = "blockToolStripMenuItem";
-            this.blockToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.blockToolStripMenuItem.Text = "Block";
+            this.Block.Name = "Block";
+            this.Block.Size = new System.Drawing.Size(152, 22);
+            this.Block.Text = "Block";
             // 
-            // beehiveToolStripMenuItem
+            // Beehive
             // 
-            this.beehiveToolStripMenuItem.Name = "beehiveToolStripMenuItem";
-            this.beehiveToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.beehiveToolStripMenuItem.Text = "Beehive";
+            this.Beehive.Name = "Beehive";
+            this.Beehive.Size = new System.Drawing.Size(152, 22);
+            this.Beehive.Text = "Beehive";
             // 
             // oscillatorsToolStripMenuItem
             // 
@@ -145,6 +112,40 @@
             this.yourSavesToolStripMenuItem.Name = "yourSavesToolStripMenuItem";
             this.yourSavesToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.yourSavesToolStripMenuItem.Text = "Your Saves";
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(533, 16);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(123, 40);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClear.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(662, 62);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(123, 40);
+            this.btnClear.TabIndex = 0;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            // 
+            // btnPause
+            // 
+            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPause.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPause.Location = new System.Drawing.Point(662, 16);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(123, 40);
+            this.btnPause.TabIndex = 1;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
             // 
             // DrawScreen
             // 
@@ -189,9 +190,9 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.MenuStrip LoadStrip;
-        private System.Windows.Forms.ToolStripMenuItem wtfToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem blockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem beehiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StillLifeforms;
+        private System.Windows.Forms.ToolStripMenuItem Block;
+        private System.Windows.Forms.ToolStripMenuItem Beehive;
         private System.Windows.Forms.ToolStripMenuItem oscillatorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spaceShipsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yourSavesToolStripMenuItem;
