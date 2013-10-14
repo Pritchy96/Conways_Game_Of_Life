@@ -9,7 +9,7 @@ using System.Windows.Forms;
 class IngameState : BasicState
 {
     
-    Rectangle dimensions = new Rectangle(0, 0, 800, 800);
+    Rectangle dimensions = new Rectangle(0, 0, 800, 661);
     int tileWidth = 20;
 
     bool[,] currentState;
@@ -136,20 +136,25 @@ class IngameState : BasicState
     {
         if (mousedown)
         {
+            //Initial check to see if we're within bounds of array (not foolproof).
             if (e.Button == MouseButtons.Left && dimensions.Contains(e.Location))
             {
                 //Calculating the tile which the mouse is over.
                 int xPos = e.X / tileWidth;
                 int yPos = e.Y / tileWidth;
 
-                //If this tile hasn't been changed in this current click, change it.
-                if (clicked[xPos, yPos] != true)
+                //Second check to make sure it's not out of bounds. This stops errors with the bottom of the grid.
+                if (xPos < currentState.GetLength(0) && yPos < currentState.GetLength(1))
                 {
-                    //Changing the bools of each array to the opposite of what
-                    //they were.
-                    currentState[xPos, yPos] = !currentState[xPos, yPos];
-                    nextState[xPos, yPos] = !nextState[xPos, yPos];
-                    clicked[xPos, yPos] = !clicked[xPos, yPos];
+                    //If this tile hasn't been changed in this current click, change it.
+                    if (clicked[xPos, yPos] != true)
+                    {
+                        //Changing the bools of each array to the opposite of what
+                        //they were.
+                        currentState[xPos, yPos] = !currentState[xPos, yPos];
+                        nextState[xPos, yPos] = !nextState[xPos, yPos];
+                        clicked[xPos, yPos] = !clicked[xPos, yPos];
+                    }
                 }
             }
         }
@@ -194,38 +199,7 @@ class IngameState : BasicState
     }
 
     public override void ResizeWindow(EventArgs e, int width, int height)
-        {
+    {
 
-        //Currently not working, this is an attempt to resize the tile array and keep the elements currently within it.
-        //Resizing Dimensions.
-        dimensions = new Rectangle(0, 0, width, height);
-
-        bool[,] tempCurrent = new bool[currentState.GetLength(0), currentState.GetLength(1)];
-
-        //Setting Size of Arrays.
-        currentState = new bool[(int)Math.Floor((Double)(dimensions.Height - dimensions.Y) / tileWidth),
-            (int)Math.Floor((Double)(dimensions.Width - dimensions.X) / tileWidth)];
-
-        //Updating the Current array with the Next arrays values.
-        for (int i = 0; i < nextState.GetLength(0); i++)
-        {
-            for (int j = 0; j < nextState.GetLength(1); j++)
-            {
-                currentState[i, j] = nextState[i, j];
-            }
-        }
-
-        nextState = new bool[currentState.GetLength(0), currentState.GetLength(1)];
-
-        //Updating the Current array with the Next arrays values.
-        for (int i = 0; i < currentState.GetLength(0); i++)
-        {
-            for (int j = 0; j < currentState.GetLength(1); j++)
-            {
-                nextState[i, j] = currentState[i, j];
-            }
-        }
-
-        clicked = new bool[currentState.GetLength(0), currentState.GetLength(1)];
     }
 }

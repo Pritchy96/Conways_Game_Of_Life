@@ -99,15 +99,6 @@ namespace Base_Project__Always_Copy__
             manager.Redraw(e);
         }
 
-        #region Function Explanation
-        //Screen Size setting method with adjustments made for screen Border.
-        #endregion
-        private void SetScreenSize(int width, int height)
-        {
-            this.Width = width + 6;
-            this.Height = height + 28;
-        }
-
         private void MouseDown(object sender, MouseEventArgs e)
         {
             manager.MouseDown(e);
@@ -115,7 +106,7 @@ namespace Base_Project__Always_Copy__
 
         public void ResizeWindow(object sender, EventArgs e)
         {
-            manager.ResizeWindow(e, this.Height, this.Width);
+            manager.ResizeWindow(e, this.DrawScreen.Height, this.DrawScreen.Width);
         }
     }
 }
