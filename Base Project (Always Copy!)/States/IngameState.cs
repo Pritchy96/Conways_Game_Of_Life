@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 class IngameState : BasicState
 {
-    
+
     Rectangle dimensions = new Rectangle(0, 0, 800, 661);
     int tileWidth = 20;
 
     bool[,] currentState;
     bool[,] nextState;
+    Point middleOfGrid;
 
     //When mouse is held down over a tile, it's corresponding value
     //in clicked is set to true. This stops it flicking back and forth erraticaly.
@@ -26,8 +27,12 @@ class IngameState : BasicState
         //Setting Size of Arrays.
         currentState = new bool[(int)Math.Floor((Double)(dimensions.Width - dimensions.X) / tileWidth),
             (int)Math.Floor((Double)(dimensions.Height - dimensions.Y) / tileWidth)];
+
         nextState = new bool[currentState.GetLength(0), currentState.GetLength(1)];
         clicked = new bool[currentState.GetLength(0), currentState.GetLength(1)];
+
+        //Finds middle of the grid.
+        middleOfGrid = new Point((int)Math.Floor((Double)(currentState.GetLength(0) / 2)), (int)Math.Floor((Double)(currentState.GetLength(1) / 2)));
     }
 
     public override void ClearGrid()
@@ -226,30 +231,156 @@ class IngameState : BasicState
         //Clears grid ready for shape load.
         ClearGrid();
 
+        //Variable to send to AddShape.
+        int[,] shape = new int[2,2];
+
         //Massive, horrible switch statement to see which button was clicked
         //and loading/drawing the respective shape.
         switch (shapeName)
         {
+            #region Still Lifes
             case ("Block"):
-                //Drawing code here
-                currentState[10, 10] = true;
-                currentState[10, 11] = true;
-                currentState[11, 10] = true;
-                currentState[11, 11] = true;
-
-                nextState[10, 10] = true;
-                nextState[10, 11] = true;
-                nextState[11, 10] = true;
-                nextState[11, 11] = true;
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {1, 1},
+                    {1, 1}
+                };
                 break;
 
             case ("Beehive"):
-                //and here.
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 1, 1, 0},
+                    {1, 0, 0, 1},
+                    {0, 1, 1, 0}
+                };
                 break;
 
+            case ("Loaf"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 1, 1, 0},
+                    {1, 0, 0, 1},
+                    {0, 1, 0, 1},
+                    {0, 0, 1, 0}
+                };
+                break;
+
+            case ("Boat"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {1, 1, 0},
+                    {1, 0, 1},
+                    {0, 1, 0}
+                };
+                break;
+            #endregion
+
+            #region Oscillators
+            case ("Blinker"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {1, 1, 1}        
+                };
+                break;
+
+            case ("Toad"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 1, 1, 1},
+                    {1, 1, 1, 0} 
+                };
+                break;
+
+            case ("Beacon"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {1, 1, 0, 0},  
+                    {1, 1, 0, 0},  
+                    {0, 0, 1, 1},  
+                    {0, 0, 1, 1},  
+                };
+                break;
+
+            case ("Pulsar"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0},
+                };
+                break;
+
+            #endregion
+
+            #region Ships
+            case ("Glider"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 1, 0},
+                    {0, 0, 1},
+                    {1, 1, 1},
+                };
+                break;
+
+            case ("LWSS"):
+                //Create the shape.
+                shape = new int[,]
+                {
+                    {0, 1, 0, 0, 1},
+                    {1, 0, 0, 0, 0},
+                    {1, 0, 0, 0, 1},
+                    {1, 1, 1, 1, 0}
+                };
+                break;
+            #endregion
         }
 
+        //Send the shape to the function to be made.
+        AddShape(shape);
         //Pasuing so the player can see the shape.
         paused = true;
+    }
+
+    //Adds a shape to the game from an array of ints to specify the shape.
+    public void AddShape(int[,] shape)
+    {
+        //Gets half the length of the shape size so we can offset it from the center to get it more central.
+        Point offset = new Point((int)Math.Floor((Double)(shape.GetLength(1) / 2)), (int)Math.Floor((Double)(shape.GetLength(0) / 2)));
+
+        //Finds the position which is best to start from using this data.
+        Point startPos = new Point(middleOfGrid.X - offset.X, middleOfGrid.Y - offset.Y);
+
+        //Loops through the positions in the game arrays and sets the required cells to true.
+        for (int i = 0; i < shape.GetLength(0); i++)
+        {
+            for (int j = 0; j < shape.GetLength(1); j++)
+            {
+                if (shape[i, j] == 1)
+                {
+                    currentState[startPos.X + j, startPos.Y + i] = true;
+                    nextState[startPos.X + j, startPos.Y + i] = true;
+                }
+            }
+        }
     }
 }

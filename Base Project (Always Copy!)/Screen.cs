@@ -110,6 +110,16 @@ namespace Base_Project__Always_Copy__
             manager.ResizeWindow(e, this.DrawScreen.Height, this.DrawScreen.Width);
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.ClearGrid();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.Pause(lblPaused);
+        }
+
         private void Block_Click(object sender, EventArgs e)
         {
             manager.CurrentState.LoadShapeClick("Block");
@@ -120,14 +130,46 @@ namespace Base_Project__Always_Copy__
             manager.CurrentState.LoadShapeClick("Beehive");
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void Loaf_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.ClearGrid();
+            manager.CurrentState.LoadShapeClick("Loaf");
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
+        private void Boat_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.Pause(lblPaused);
+            manager.CurrentState.LoadShapeClick("Boat");
         }
+
+        private void Blinker_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Blinker");
+        }
+
+        private void Toad_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Toad");
+        }
+
+        private void Beacon_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Beacon");
+        }
+
+        private void Pulsar_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Pulsar");
+        }
+
+        private void Glider_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("Glider");
+        }
+
+        private void LWSS_Click(object sender, EventArgs e)
+        {
+            manager.CurrentState.LoadShapeClick("LWSS");
+        }
+
+
     }
 }
