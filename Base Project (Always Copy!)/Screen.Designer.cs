@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ControlPanel = new System.Windows.Forms.Panel();
+            this.Slider = new System.Windows.Forms.TrackBar();
             this.lblPaused = new System.Windows.Forms.Label();
             this.LoadStrip = new System.Windows.Forms.MenuStrip();
             this.StillLifeforms = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,14 +49,18 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.DrawScreen = new Base_Project__Always_Copy__.DBPanel();
             this.ControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slider)).BeginInit();
             this.LoadStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ControlPanel
             // 
             this.ControlPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ControlPanel.Controls.Add(this.label1);
+            this.ControlPanel.Controls.Add(this.Slider);
             this.ControlPanel.Controls.Add(this.lblPaused);
             this.ControlPanel.Controls.Add(this.LoadStrip);
             this.ControlPanel.Controls.Add(this.btnSave);
@@ -65,6 +70,20 @@
             this.ControlPanel.Name = "ControlPanel";
             this.ControlPanel.Size = new System.Drawing.Size(799, 122);
             this.ControlPanel.TabIndex = 2;
+            // 
+            // Slider
+            // 
+            this.Slider.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Slider.Location = new System.Drawing.Point(345, 36);
+            this.Slider.Maximum = 20;
+            this.Slider.Minimum = 1;
+            this.Slider.Name = "Slider";
+            this.Slider.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Slider.RightToLeftLayout = true;
+            this.Slider.Size = new System.Drawing.Size(176, 45);
+            this.Slider.TabIndex = 6;
+            this.Slider.Value = 10;
+            this.Slider.ValueChanged += new System.EventHandler(this.Slider_Moved);
             // 
             // lblPaused
             // 
@@ -88,7 +107,7 @@
             this.yourSavesToolStripMenuItem});
             this.LoadStrip.Location = new System.Drawing.Point(7, 16);
             this.LoadStrip.Name = "LoadStrip";
-            this.LoadStrip.Size = new System.Drawing.Size(433, 24);
+            this.LoadStrip.Size = new System.Drawing.Size(341, 24);
             this.LoadStrip.TabIndex = 4;
             this.LoadStrip.Text = "menuStrip1";
             // 
@@ -146,28 +165,28 @@
             // Blinker
             // 
             this.Blinker.Name = "Blinker";
-            this.Blinker.Size = new System.Drawing.Size(152, 22);
+            this.Blinker.Size = new System.Drawing.Size(114, 22);
             this.Blinker.Text = "Blinker";
             this.Blinker.Click += new System.EventHandler(this.Blinker_Click);
             // 
             // Toad
             // 
             this.Toad.Name = "Toad";
-            this.Toad.Size = new System.Drawing.Size(152, 22);
+            this.Toad.Size = new System.Drawing.Size(114, 22);
             this.Toad.Text = "Toad";
             this.Toad.Click += new System.EventHandler(this.Toad_Click);
             // 
             // Beacon
             // 
             this.Beacon.Name = "Beacon";
-            this.Beacon.Size = new System.Drawing.Size(152, 22);
+            this.Beacon.Size = new System.Drawing.Size(114, 22);
             this.Beacon.Text = "Beacon";
             this.Beacon.Click += new System.EventHandler(this.Beacon_Click);
             // 
             // Pulsar
             // 
             this.Pulsar.Name = "Pulsar";
-            this.Pulsar.Size = new System.Drawing.Size(152, 22);
+            this.Pulsar.Size = new System.Drawing.Size(114, 22);
             this.Pulsar.Text = "Pulsar";
             this.Pulsar.Click += new System.EventHandler(this.Pulsar_Click);
             // 
@@ -210,6 +229,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save Shape";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
@@ -234,6 +254,16 @@
             this.btnPause.Text = "Pause/Unpause";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 10F);
+            this.label1.Location = new System.Drawing.Point(416, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Speed";
             // 
             // DrawScreen
             // 
@@ -264,6 +294,7 @@
             this.SizeChanged += new System.EventHandler(this.ResizeWindow);
             this.ControlPanel.ResumeLayout(false);
             this.ControlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slider)).EndInit();
             this.LoadStrip.ResumeLayout(false);
             this.LoadStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -293,6 +324,8 @@
         private System.Windows.Forms.ToolStripMenuItem Beacon;
         private System.Windows.Forms.ToolStripMenuItem Glider;
         private System.Windows.Forms.ToolStripMenuItem LWSS;
+        private System.Windows.Forms.TrackBar Slider;
+        private System.Windows.Forms.Label label1;
 
     }
 }

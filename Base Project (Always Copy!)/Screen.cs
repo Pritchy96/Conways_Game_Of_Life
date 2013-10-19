@@ -18,8 +18,13 @@ namespace Base_Project__Always_Copy__
         Boolean Running = false;
         Thread thread = null;
 
+        //Our State manager.
         Manager manager = new Manager();
-        string hello;
+
+        //The multiplier for the thread.sleep in the update thread.
+        //This is used as we cannot extract a value directly from the
+        //Slider in that thread.
+        int speedModifier = 0;
 
         #region Function Explanation
         //Constructor, sets Screen size and then begins Thread.
@@ -28,6 +33,9 @@ namespace Base_Project__Always_Copy__
         {
             InitializeComponent();
             BeginThread();
+            //Sets speedModifier to initial Slider Value.
+            //Useful in the case we don't start it at 1.
+            speedModifier = Slider.Value;
         }
 
         #region Function Explanation
@@ -88,13 +96,10 @@ namespace Base_Project__Always_Copy__
                 DrawScreen.Invalidate();
 
                 //Basic Thread Slowing.
-                Thread.Sleep(12);
+                Thread.Sleep(10 * speedModifier);
             }
         }
 
-        #region Function Explanation
-        //Repaints Manager.
-        #endregion
         private void Repaint(object sender, PaintEventArgs e)
         {
             manager.Redraw(e);
@@ -120,6 +125,21 @@ namespace Base_Project__Always_Copy__
             manager.CurrentState.Pause(lblPaused);
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #region Function Explanation
+        //Adjusts speedModifier. This is used as we cannot extract a value directly from the
+        //Slider in that thread.
+        #endregion
+        private void Slider_Moved(object sender, EventArgs e)
+        {
+            speedModifier = Slider.Value;
+        }
+
+        #region Shape Click Events
         private void Block_Click(object sender, EventArgs e)
         {
             manager.CurrentState.LoadShapeClick("Block");
@@ -169,6 +189,7 @@ namespace Base_Project__Always_Copy__
         {
             manager.CurrentState.LoadShapeClick("LWSS");
         }
+        #endregion
 
 
     }
