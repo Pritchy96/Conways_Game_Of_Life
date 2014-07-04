@@ -15,11 +15,10 @@ namespace Base_Project__Always_Copy__
     {
 
         //Thread Variables.
-        Boolean Running = false;
+        //Is thread running?
+        Boolean running = false;
         Thread thread = null;
-
-        //Our State manager.
-        Manager manager = new Manager();
+        IngameState gameState = new IngameState();
 
         //The multiplier for the thread.sleep in the update thread.
         //This is used as we cannot extract a value directly from the
@@ -48,17 +47,17 @@ namespace Base_Project__Always_Copy__
 
         private void MouseClick(object sender, MouseEventArgs e)
         {
-            manager.MouseClicked(e);
+            gameState.MouseClicked(e);
         }
 
         private void MouseMoved(object sender, MouseEventArgs e)
         {
-            manager.MouseMoved(e);
+            gameState.MouseMoved(e);
         }
 
         private void Redraw(object sender, PaintEventArgs e)
         {
-            manager.Redraw(e);
+            gameState.Redraw(e);
         }
 
         #region Function Explanation
@@ -68,7 +67,7 @@ namespace Base_Project__Always_Copy__
         {
             thread = new Thread(new ThreadStart(Update));
             thread.Start();
-            Running = true;
+            running = true;
         }
 
         #region Function Explanation
@@ -77,7 +76,7 @@ namespace Base_Project__Always_Copy__
         public void killThread()
         {
             //Simply kills off the Thread.
-            Running = false;
+            running = false;
             thread.Abort();
             thread.Join();
         }
@@ -88,41 +87,40 @@ namespace Base_Project__Always_Copy__
         #endregion
         public void Update()
         {
-            while (Running)
+            while (running)
             {
-                manager.Update();
+                    gameState.Update();
                 
-                //Cause screen to redraw.
-                DrawScreen.Invalidate();
+                    //Cause screen to redraw.
+                    DrawScreen.Invalidate();
 
-                //Basic Thread Slowing.
-                Thread.Sleep(10 * speedModifier);
+                    //Basic Thread Slowing.
+                    Thread.Sleep(10 * speedModifier);
             }
         }
 
         private void Repaint(object sender, PaintEventArgs e)
         {
-            manager.Redraw(e);
+            gameState.Redraw(e);
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
         {
-            manager.MouseDown(e);
+            gameState.MouseDown(e);
         }
 
         public void ResizeWindow(object sender, EventArgs e)
         {
-            manager.ResizeWindow(e, this.DrawScreen.Height, this.DrawScreen.Width);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.ClearGrid();
+            gameState.ClearGrid();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.Pause(lblPaused);
+            gameState.Pause(lblPaused);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -142,52 +140,52 @@ namespace Base_Project__Always_Copy__
         #region Shape Click Events
         private void Block_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Block");
+            gameState.LoadShapeClick("Block");
         }
 
         private void Beehive_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Beehive");
+            gameState.LoadShapeClick("Beehive");
         }
 
         private void Loaf_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Loaf");
+            gameState.LoadShapeClick("Loaf");
         }
 
         private void Boat_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Boat");
+            gameState.LoadShapeClick("Boat");
         }
 
         private void Blinker_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Blinker");
+            gameState.LoadShapeClick("Blinker");
         }
 
         private void Toad_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Toad");
+            gameState.LoadShapeClick("Toad");
         }
 
         private void Beacon_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Beacon");
+            gameState.LoadShapeClick("Beacon");
         }
 
         private void Pulsar_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Pulsar");
+            gameState.LoadShapeClick("Pulsar");
         }
 
         private void Glider_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("Glider");
+            gameState.LoadShapeClick("Glider");
         }
 
         private void LWSS_Click(object sender, EventArgs e)
         {
-            manager.CurrentState.LoadShapeClick("LWSS");
+            gameState.LoadShapeClick("LWSS");
         }
         #endregion
 
